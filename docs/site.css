@@ -74,7 +74,7 @@ a.round:hover,.panel:hover .round,.ccard:hover .round{background:var(--chrome);c
 .brand{display:flex;flex-direction:column;line-height:1;color:#fff}
 .brand-group{display:flex;align-items:center;gap:16px;flex:none}
 .brand-aff{display:flex;align-items:center;gap:10px;padding-left:16px;border-left:1px solid var(--hair);font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);transition:opacity .25s}
-.brand-aff img{height:34px;width:auto;border-radius:7px;background:#fff;box-shadow:0 6px 18px -10px rgba(0,0,0,.7)}
+.brand-aff img{height:38px;width:auto;box-sizing:border-box;padding:6px 10px 5px;border-radius:8px;background:#fff;box-shadow:0 6px 18px -10px rgba(0,0,0,.7)}
 .brand-aff:hover{opacity:.85}
 .rdv-live{display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:18px 20px;border-radius:16px;background:rgba(185,220,255,.07);box-shadow:inset 0 0 0 1px rgba(185,220,255,.22)}
 .rdv-live>p:not(.eyebrow){font-size:14.5px;color:rgba(255,255,255,.8)}
@@ -420,7 +420,7 @@ details p{padding:0 24px 24px;color:var(--muted);max-width:62ch}
  body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
  .header-in{height:70px}.header.scrolled .header-in{height:62px}
  .brand-name{font-size:24px}.brand-top{font-size:8.5px}
- .brand-group{gap:11px}.brand-aff{padding-left:11px}.brand-aff span{display:none}.brand-aff img{height:30px}
+ .brand-group{gap:11px}.brand-aff{padding-left:11px}.brand-aff span{display:none}.brand-aff img{height:34px;padding:5px 9px 4px}
  .header-actions .btn{display:none}
  .menu{display:block}
  .header nav{position:fixed;inset:0;z-index:-1;flex-direction:column;gap:4px;padding:104px var(--pad) 40px;background:rgba(3,8,42,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;overflow:auto}
