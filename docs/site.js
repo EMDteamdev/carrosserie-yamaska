@@ -38,23 +38,27 @@ $$('[data-ambient]').forEach(scene => {
   const video = $('video', scene), toggle = $('.film-toggle', scene);
   if (!video) return;
   let userPaused = false, visible = false;
+  video.muted = true; video.defaultMuted = true; video.playsInline = true;
   const load = () => { if (!video.src) { video.src = mobile.matches && video.dataset.srcMobile ? video.dataset.srcMobile : video.dataset.src; } };
+  // Lecture automatique demandée par Bryan, même si « Réduire les animations » est actif.
+  const play = () => { const p = video.play(); if (p) p.catch(() => {}); };
   const sync = () => {
-    if (reduce.matches) { video.pause(); return; }
-    if (visible && !userPaused && !document.hidden) { load(); if (video.paused) video.play().catch(() => {}); }
+    if (visible && !userPaused && !document.hidden) { load(); if (video.paused) play(); }
     else if (!video.paused) video.pause();
   };
+  // Repli : si le navigateur bloque l’autoplay (ex. mode économie d’énergie iOS), relancer au premier geste.
+  const kick = () => sync();
+  ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(t => window.addEventListener(t, kick, { passive: true, once: true }));
+  video.addEventListener('canplay', () => { if (visible && !userPaused && video.paused) play(); });
   if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }, { rootMargin: '120px 0px' }).observe(video);
   else { visible = true; sync(); }
   document.addEventListener('visibilitychange', sync);
-  reduce.addEventListener('change', sync);
   if (toggle) {
-    if (reduce.matches) { userPaused = true; toggle.setAttribute('aria-pressed', 'true'); toggle.firstElementChild.textContent = 'Lire la vidéo'; }
     toggle.addEventListener('click', () => {
       userPaused = !userPaused;
       toggle.setAttribute('aria-pressed', String(userPaused));
       toggle.firstElementChild.textContent = userPaused ? 'Lire la vidéo' : 'Mettre en pause';
-      if (!userPaused && reduce.matches) { load(); video.play().catch(() => {}); } else sync();
+      sync();
     });
   }
 });
