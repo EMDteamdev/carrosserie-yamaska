@@ -131,6 +131,14 @@ a.round:hover,.panel:hover .round,.ccard:hover .round{background:var(--chrome);c
 .strip p{font-size:clamp(15px,1.5vw,21px);font-weight:500;letter-spacing:-.03em;color:var(--brand)}
 .strip-brand{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:600;color:var(--muted)}
 .strip-brand img{height:42px;width:auto;border-radius:6px}
+.strip-run{display:flex;align-items:center;overflow:hidden;min-height:84px;color:var(--brand)}
+.strip-track{display:flex;align-items:center;flex:none;margin:0;padding:0;list-style:none;animation:slide 46s linear infinite;will-change:transform}
+.strip-track li{display:flex;align-items:center;gap:16px;white-space:nowrap;font-size:clamp(16px,1.5vw,21px);font-weight:500;letter-spacing:-.03em}
+.strip-track li::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);margin:0 clamp(26px,3vw,46px);flex:none}
+.strip-track img{height:44px;width:auto}
+.strip-run.off .strip-track{animation-play-state:paused}
+@media (hover:hover){.strip-run:hover .strip-track{animation-play-state:paused}}
+@media (max-width:760px){.strip-run{min-height:64px}.strip-track{animation-duration:34s}.strip-track img{height:34px}.strip-track li{gap:12px}}
 
 /* ---------- Titres de section ---------- */
 .head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:clamp(36px,4.6vw,64px)}
